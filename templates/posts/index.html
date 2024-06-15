@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All posts</title>
+    <link rel="stylesheet" href="../../static/all.css">
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 12%;
+            width: 90vw;
+            height: 100vh;
+            margin: 5% auto;
+
+        }
+
+        section.post {
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            height: 25%;
+            background-color: rgba(161, 161, 161, 0.842);
+            border-radius: 12px;
+
+        }
+
+        section.resume {
+            margin-left: 12px;
+            font-size: 1.6rem;
+        }
+
+        section.tags {
+            position: absolute;
+            bottom: 0;
+            padding: 12px;
+
+        }
+
+        section.tags>span {
+            color: lightskyblue;
+            background-color: rgba(0, 0, 0, 0.637);
+            border-radius: 8px;
+            padding: 12px;
+            margin-left: 12px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'partials/header.html' %}
+    <main>
+        {% for post in posts.values() %}
+        <section class="post">
+            <header class="header-post">
+                <h1 class="title-post">{{post.title}}</h1>
+            </header>
+            <section class="resume">
+                {{ post.data }}
+            </section>
+            <section class="tags">
+                {%if post.tags|length > 0 %}
+                {% for tag in post.tags %}
+
+                <span>{{ tag }}</span>
+                {%endfor%}
+                {%else%}
+                <span>Sem tags nesse Post</span>
+                {%endif%}
+            </section>
+        </section>
+        <!-- <section>{{ post }}</section> -->
+        {% endfor %}
+        <!--         
+        <section class="post">  
+            <p class="tags-posts">
+                <span>Python</span>
+                <span>Desenvolvimento</span>
+            </p>
+            <h2 class="tile-post">Python vs Rust</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, ullam. Debitis fugiat labore praesentium expedita impedit eum maxime? Doloremque illum voluptatibus suscipit distinctio inventore eligendi dolore commodi tenetur maiores quibusdam?</p>
+        </section> -->
+    </main>
+</body>
+
+</html>
